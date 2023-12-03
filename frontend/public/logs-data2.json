@@ -1,0 +1,32 @@
+[
+  {
+    "year": "2021-01-01",
+    "value": 6,
+    "category": "logsBotsSMS"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 5,
+    "category": "logsHideSMS"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 4,
+    "category": "logsGoogleAuth"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 3,
+    "category": "logsOtherAccounts"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 2,
+    "category": "logsUssd"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 1,
+    "category": "logsPushList"
+  }
+]

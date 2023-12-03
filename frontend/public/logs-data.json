@@ -1,0 +1,32 @@
+[
+  {
+    "year": "2021-01-01",
+    "value": 3,
+    "category": "Crypt"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 12,
+    "category": "Emails"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 46,
+    "category": "Cards"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 24,
+    "category": "Shops"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 32,
+    "category": "Wallet"
+  },
+  {
+    "year": "2021-01-01",
+    "value": 17,
+    "category": "Stealer"
+  }
+]

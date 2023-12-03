@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,800;0,900;1,400;1,600&display=swap');
+
+:root {
+  --border-radius: 0px;
+}
+
+label,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-weight: normal;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+}
+
+.Auth {
+  position: relative;
+  height: 100vh;
+
+  //background-image: url("../../Images/Auth_bg_2.jpg");
+  background-position: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  //font-family: "Raleway", sans-serif;
+  //font-weight: 400;
+  font-family: monospace;
+  color: #333333;
+
+  &-Particles {
+    background-color: #161616;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  
+  &-inner {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //background-color: rgba(0,0,0, 0.5);
+  }
+
+  &-Form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: rgba(255,255,255, 1);
+    width: 450px;
+
+    border-radius: var(--border-radius);
+
+    &-row {
+      margin-bottom: 1.5rem;
+    }
+
+    &-title {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      margin: 0 0 .5rem;
+      color: inherit;
+    }
+
+    &-label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    &-input {
+      outline: none;
+      width: 100%;
+      font-family: monospace;
+      height: 36px;
+
+      &::placeholder {
+        color: #c0c0c0;
+        font-family: "Raleway", sans-serif;
+      }
+    }
+
+    &-group {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #999;
+
+      & .anticon {
+        padding: 10px;
+      }
+    }
+
+    &-footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 12px;
+      font-weight: 400;
+      color: #c0c0c0;
+    }
+
+    &-button {
+      display: block;
+      background-color: #d0d0d0;
+      padding: 15px;
+      //border-radius: 100px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+
+      transition: all .2s ease;
+      &:hover {
+        background-color: #4eae35;
+      }
+    }
+  }
+}

